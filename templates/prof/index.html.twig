@@ -1,20 +1,70 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block title %}Hello ProfController!{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{path('app_home')}}">Ecole</a>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_cgu')}}">CGU</a>
+        </li>
+                  <a class="nav-link" href="{{path('liste')}}">Liste des eleves</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_classe')}}">Liste des classes</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_prof')}}">Liste des profs</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_matiere')}}">Liste des matieres</a>
+        </li>
+    </div>
+  </div>
+</nav>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+     
+   
+  <div class="container">
+ <h1 class="m-4"> Liste des profs de notre ecole</h1>
+ <div class="d-flex ">      
+    {% for prof in profs %}
+         <div class="card m-4 text-center d-flex justify-content-center" style="width: 18rem;">
+  <div class="card-body">
+    <h2 class="card-text">{{prof.nom}}</h2>
+    <h2 class="card-text">{{prof.prenom}}</h2>
+    <h2 class="card-text">{{prof.matiere.nom}}</h2>
+                
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/ismai/Desktop/tp_symfony/src/Controller/ProfController.php'|file_link(0) }}">src/Controller/ProfController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/ismai/Desktop/tp_symfony/templates/prof/index.html.twig'|file_link(0) }}">templates/prof/index.html.twig</a></code></li>
-    </ul>
+
+  </div>
+    </div>
+  {% endfor %}
+   <li>
+          <a class="nav-link" href="{{path('app_createprof')}}" class="btn btn-info">Ajouter un prof</a>
+        </li>
 </div>
-{% endblock %}
+</div>
+
+   
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

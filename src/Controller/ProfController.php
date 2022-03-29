@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Prof;
+use App\Form\ProfType;
 use App\Repository\ProfRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfController extends AbstractController
 {
@@ -18,5 +21,26 @@ class ProfController extends AbstractController
         return $this->render('prof/index.html.twig', [
             'profs' => $profs,
         ]);
+    }
+    /**
+     * @Route("/prof/create", name="app_createprof")
+     */
+    public function create(ProfRepository $er, Request $request)
+    {
+
+        $prof = new Prof;
+
+        $formulaire = $this->createForm(ProfType::class, $prof);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($prof);
+            return $this->redirectToRoute('app_prof');
+        } else {
+            return $this->render('prof/formulaire.html.twig', [
+                'formView' => $formulaire->createView(),
+            ]);
+        }
     }
 }

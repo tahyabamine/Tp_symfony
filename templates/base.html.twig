@@ -10,17 +10,43 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{path('app_home')}}">Ecole</a>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_cgu')}}">CGU</a>
+        </li>
+                  <a class="nav-link" href="{{path('liste')}}">Liste des eleves</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_classe')}}">Liste des classes</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_prof')}}">Liste des profs</a>
+           </li>
+           <li>
+          <a class="nav-link" href="{{path('app_matiere')}}">Liste des matieres</a>
+        </li>
+    </div>
+  </div>
+</nav>
+
 
      
    
   <div class="container">
- <h1 class="m-4"> Liste de eleves de notre ecole</h1>
+ <h1 class="m-4"> Liste des profs de notre ecole</h1>
  <div class="d-flex ">      
     {% for prof in profs %}
          <div class="card m-4 text-center d-flex justify-content-center" style="width: 18rem;">
   <div class="card-body">
     <h2 class="card-text">{{prof.nom}}</h2>
-    <h2 class="card-text">{{prof.nom}}</h2>
+    <h2 class="card-text">{{prof.prenom}}</h2>
     <h2 class="card-text">{{prof.matiere.nom}}</h2>
 
   </div>

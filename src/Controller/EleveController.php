@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Eleve;
+use App\Form\EleveType;
 use App\Repository\EleveRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EleveController extends AbstractController
 {
@@ -18,5 +21,26 @@ class EleveController extends AbstractController
         return $this->render('eleve/index.html.twig', [
             'eleves' => $eleves,
         ]);
+    }
+    /**
+     * @Route("/eleve/create", name="app_createeleve")
+     */
+    public function create(EleveRepository $er, Request $request)
+    {
+
+        $eleve = new Eleve;
+
+        $formulaire = $this->createForm(EleveType::class, $eleve);
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($eleve);
+            return $this->redirectToRoute('liste');
+        } else {
+            return $this->render('prof/formulaire.html.twig', [
+                'formView' => $formulaire->createView(),
+            ]);
+        }
     }
 }
