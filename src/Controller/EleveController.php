@@ -44,6 +44,17 @@ class EleveController extends AbstractController
         }
     }
     /**
+     * @Route("/eleve{id}/details", name="app_detailseleve")
+     */
+    public function details($id, EleveRepository $er)
+    {
+        $eleve = $er->find($id);
+
+        return $this->render('eleve/details.html.twig', [
+            'eleve' => $eleve,
+        ]);
+    }
+    /**
      * @Route("/eleve{id}/delete", name="app_deleteeleve")
      */
     public function delete($id, EleveRepository $er)

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,9 +9,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
+</head>
 
+<body>
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{path('app_home')}}">Ecole</a>
@@ -43,35 +44,40 @@
 
    
   <div class="container">
- <h1 class="m-4"> Liste des eleves de notre ecole</h1>
- <div class="d-flex flex-wrap">      
-    {% for eleve in eleves %}
-         <div class="card m-4 text-center d-flex justify-content-center" style="width: 18rem;">
-  <div class="card-body">
-    <h2 class="card-text">{{eleve.nom}}</h2>
-    <h2 class="card-text">{{eleve.prenom}}</h2>
-    <h2 class="card-text">{{eleve.classe.nom}}</h2>
-                                    <a href="{{ path('app_deleteeleve', {id: eleve.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
-                     Supprimer
-                    </a>
-                     <a href="{{ path('app_detailseleve', {id: eleve.id}) }}" class="btn btn-primary">
-                     Details
-                    </a>
+<h2>Eleve</h2>
 
+    <p>L'eleve {{eleve.nom}} {{eleve.prenom}} né(e) le {{eleve.date_de_naissance}}, dans le classe {{eleve.classe.nom}} {{eleve.classe.niveau}} .</p>
 
-  </div>
-</div>
-  {% endfor %}
-                 <li>
-          <a class="nav-link" href="{{path('app_createeleve')}}" class="btn btn-info">Ajouter un eleve</a>
-        </li>
-  </div></div>
+<h2>Ses profs</h2>
+    <ul>
+ <li>Le prof principale : {{eleve.classe.prof.nom}} {{eleve.classe.prof.prenom}} </li>
+    </ul>
+    <h2>Ses notes</h2>
+  <table>
+        {% for note in eleve.notes %}
+       <thead>
+        <tr>
+        <th>
+        {{note.matiere.nom}} 
+      
+        </th>
+</tr>
+ </thead>
+  <tbody>
+<tr>
+<td>
+        {{note.note}}
+</td>
+</tr>
+  </tbody>
 
-   
+        {% endfor %}
+    </table>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>
