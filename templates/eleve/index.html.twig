@@ -51,7 +51,9 @@
     <h2 class="card-text">{{eleve.nom}}</h2>
     <h2 class="card-text">{{eleve.prenom}}</h2>
     <h2 class="card-text">{{eleve.classe.nom}}</h2>
-
+                                    <a href="{{ path('app_deleteeleve', {id: eleve.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
+                     Supprimer
+                    </a>
 
   </div>
 </div>

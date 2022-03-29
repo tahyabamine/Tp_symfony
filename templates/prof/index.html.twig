@@ -48,7 +48,9 @@
     <h2 class="card-text">{{prof.nom}}</h2>
     <h2 class="card-text">{{prof.prenom}}</h2>
     <h2 class="card-text">{{prof.matiere.nom}}</h2>
-                
+                                    <a href="{{ path('app_deleteprof', {id: prof.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
+                     Supprimer
+                    </a>
 
 
   </div>
